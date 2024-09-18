@@ -1,11 +1,13 @@
 from flask import Flask
 from controller import ClienteController
+from controller import ProdutoController
 
 def create_app():
     app = Flask(__name__)
     
     # Registrar o blueprint
     app.register_blueprint(ClienteController.cliente_bp)
+    app.register_blueprint(ProdutoController.produto_bp)
     
     return app
 

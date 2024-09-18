@@ -1,4 +1,4 @@
-from flask import Flask, app, jsonify, request, Blueprint
+from flask import  jsonify, request, Blueprint
 from config.MongoConfig import MongoConfig  
 from model.Cliente import Cliente
 from bson import ObjectId
@@ -6,8 +6,9 @@ from pymongo.errors import NetworkTimeout, ServerSelectionTimeoutError, Operatio
 from bson.errors import InvalidId
 
 
-cliente_bp = Blueprint('cliente_bp', __name__)
+
 mongoConfig = MongoConfig() #instancia a classe de configuracao
+cliente_bp = Blueprint('cliente_bp', __name__)
 class ClienteController:
     
     #Find All - todos os clientes
@@ -21,7 +22,6 @@ class ClienteController:
             clientes_serializado = [
                 {**cliente, '_id': str(cliente['_id'])} for cliente in clientes
             ]
-
             # Retorna a lista de clientes serializados
             return jsonify(clientes_serializado), 200
 

@@ -1,8 +1,7 @@
 class Produto():
-    
-    def __init__(self, id, nome, descricao, valor_unitario, categoria):
+    def __init__(self, id_produto, nome, descricao, valor_unitario, categoria):
         
-        self.id = id
+        self.id_produto = id_produto
         self.nome = nome
         self.descricao = descricao
         self.valor_unitario = valor_unitario
@@ -10,7 +9,7 @@ class Produto():
     
     def serialize(self):
         return {
-            "id": self.id,
+            "id_produto": self.id_produto,
             "nome": self.nome,
             "descricao": self.descricao,
             "valor_unitario": self.valor_unitario,
