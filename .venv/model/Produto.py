@@ -1,3 +1,4 @@
+
 class Produto():
     def __init__(self, id_produto, nome, descricao, valor_unitario, categoria):
         
@@ -15,5 +16,3 @@ class Produto():
             "valor_unitario": self.valor_unitario,
             "categoria": self.categoria
         }
-
-    
