@@ -26,28 +26,22 @@ class ClienteController:
             return jsonify(clientes_serializado), 200
 
         except NetworkTimeout:
-            # timeout de conexão com o MongoDB
             return 'Erro 500: Tempo de conexão com o banco de dados esgotado.', 500
 
         except ServerSelectionTimeoutError:
-            # timeout
             return 'Erro 500: Não foi possível conectar ao servidor MongoDB.', 500
 
         except OperationFailure:
-            # erro de operação do MongoDB
             return 'Erro 500: Falha ao executar a operação no MongoDB.', 500
 
         except InvalidId:
-            #  erros relacionados a ObjectId inválido
             return 'Erro 400: ObjectId inválido.', 400
 
         except ValueError as ve:
-            # captura erros de valor
             print(f'Error: {ve}')
             return 'Erro 400: Um valor inválido foi fornecido.', 400
 
         except Exception as e:
-            #exceções gerais
             print(f'Error: {e}')
             return 'Erro 500: Erro ao listar clientes.', 500
 
@@ -96,13 +90,12 @@ class ClienteController:
 
             # Verifica se o cliente foi inserido corretamente
             if resultado.inserted_id:
-                novo_cliente.id_cliente = str(resultado.inserted_id)  # Converte o ObjectId para string
+                novo_cliente.id_cliente = str(resultado.inserted_id) 
                 return jsonify(novo_cliente.serialize()), 201
             else:
                 return "Erro ao inserir cliente.", 500
 
         except KeyError as e:
-            # Trata o caso de algum campo obrigatório estar faltando
             return f"Erro 400: Campo obrigatório ausente: {str(e)}", 400
 
         except Exception as e:
@@ -117,7 +110,6 @@ class ClienteController:
         try:
             dados = request.get_json()
 
-            # Converter id_cliente para inteiro (ajuste se necessário)
             id_cliente = int(id_cliente)
 
             # Buscar o documento utilizando o id_cliente personalizado
@@ -147,7 +139,7 @@ class ClienteController:
     def delete_cliente(id_cliente):
         try:
 
-            # Converter id_cliente para inteiro (ajuste se necessário)
+            # Converter id_cliente para inteiro
             id_cliente = int(id_cliente)
 
             # Buscar o documento utilizando o id_cliente personalizado
